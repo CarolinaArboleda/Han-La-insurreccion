@@ -61,7 +61,7 @@ public class EnemigoComun : MonoBehaviour
         rigidbody2D.MovePosition(position);
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionStay2D(Collision2D other)
     {
        LiuBangCH player = other.gameObject.GetComponent<LiuBangCH>();
 
