@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemigoComun : MonoBehaviour
 {
-    public float speed = 2;
+    public float speed = 2.5f;
     public bool vertical;
     public float changeTime = 3.0f;
 
@@ -14,14 +14,26 @@ public class EnemigoComun : MonoBehaviour
     bool broken = true;
     int shootsFix;
 
+    Transform target; 
+    float moveSpeed = 1.5f;
+    private float rotationSpeed = 6;
+
+    Transform myTransform;
+
     // Start is called before the first frame update
     Animator animator;
+
+    void Awake()
+    {
+        myTransform = transform;
+    }
 
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         timer = changeTime;
         shootsFix = 2;
+        target = GameObject.FindWithTag("Player").transform; //target the player
         //animator = GetComponent<Animator>();
     }
 
@@ -34,7 +46,18 @@ public class EnemigoComun : MonoBehaviour
 
         timer -= Time.deltaTime;
 
-        if (timer < 0)
+        float distancia;
+        distancia = Vector2.Distance(target.transform.position, transform.position);
+
+        //Si la distancia es menor a 5
+        if (distancia < 5)
+        {
+            //Caminar
+            myTransform.position += (target.position - myTransform.position) * moveSpeed * Time.deltaTime;
+            //Lineas de debug que aparecen en la ventana Scene
+            Debug.DrawLine(target.transform.position, transform.position, Color.red, Time.deltaTime, false);
+        } 
+        else if(timer < 0)
         {
             direction = -direction;
             timer = changeTime;
