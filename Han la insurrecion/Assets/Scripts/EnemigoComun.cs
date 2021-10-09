@@ -20,7 +20,9 @@ public class EnemigoComun : MonoBehaviour
 
     Transform myTransform;
 
-    // Start is called before the first frame update
+    public int maxHealth = 100;
+    int currentHealth;
+
     Animator animator;
 
     void Awake()
@@ -35,6 +37,7 @@ public class EnemigoComun : MonoBehaviour
         shootsFix = 2;
         target = GameObject.FindWithTag("Player").transform; //target the player
         //animator = GetComponent<Animator>();
+        currentHealth = maxHealth;
     }
 
     void Update()
@@ -104,4 +107,23 @@ public class EnemigoComun : MonoBehaviour
             //animator.SetTrigger("Fixed");
         }
     }
+
+    public void takeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        if(currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Debug.Log("Enemy died!");
+
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
+    }
+
 }

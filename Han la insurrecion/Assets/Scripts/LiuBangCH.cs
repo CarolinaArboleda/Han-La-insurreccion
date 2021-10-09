@@ -15,6 +15,13 @@ public class LiuBangCH : MonoBehaviour
     //bool isSlowed;
     //float speedTimer;
 
+    public Transform attackPoint;
+    public float attackRange = 0.5f;
+    public int attackDamage = 40;
+    public float attackRate = 2f; //cooldown del ataque a melee
+    float nextAttackTime = 0f;
+    public LayerMask enemyLayers;
+
     public int health { get { return currentHealth; } }
     int currentHealth;
     //public int score { get { return currentScore; } }
@@ -78,37 +85,65 @@ public class LiuBangCH : MonoBehaviour
                 isInvincible = false;
         }
 
+        if(Time.time >= nextAttackTime)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Attack();
+                nextAttackTime = Time.time + 1f / attackRate;
+            }
+        }
+
+       
+
         //if (isSlowed)
         //{
-           // speedTimer -= Time.deltaTime;
-            //if (speedTimer < 0)
-            //{
-                //isSlowed = false;
-                //ChangeSpeed();
-                //Debug.Log("Speed: " + speed);
-            //}
+        // speedTimer -= Time.deltaTime;
+        //if (speedTimer < 0)
+        //{
+        //isSlowed = false;
+        //ChangeSpeed();
+        //Debug.Log("Speed: " + speed);
+        //}
         //}
 
 
-        //if (Input.GetKeyDown(KeyCode.C))
-       // {
+            //if (Input.GetKeyDown(KeyCode.C))
+            // {
             //if (enableShooting && shoots > 0)
             //{
-                //Launch();
-                //shoots--;
+            //Launch();
+            //shoots--;
             //}
-       // }
+            // }
 
 
-        //if (Input.GetKeyDown(KeyCode.V))
-       // {
-         //   LaunchScrew();
-        //}
+            //if (Input.GetKeyDown(KeyCode.V))
+            // {
+            //   LaunchScrew();
+            //}
 
 
 
     }
 
+    void Attack()
+    {
+      Collider2D[] hitEnemies =  Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+        foreach(Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponent<EnemigoComun>().takeDamage(attackDamage);
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+            return;
+
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
     public void ChangeHealth(int amount)
     {
         if (amount < 0)
