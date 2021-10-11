@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2349831445813036224}
   - component: {fileID: 2349831445813036239}
   - component: {fileID: 2349831445813036226}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: qilin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,6 @@ MonoBehaviour:
   speed: 2
   vertical: 1
   changeTime: 3
-  maxHealth: 100
 --- !u!212 &2349831445813036224
 SpriteRenderer:
   m_ObjectHideFlags: 0
