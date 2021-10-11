@@ -14,7 +14,7 @@ public class EnemigoComun : MonoBehaviour
     bool broken = true;
     int shootsFix;
 
-    Transform target; 
+    Transform target;
     float moveSpeed = 1.5f;
     private float rotationSpeed = 6;
 
@@ -59,8 +59,8 @@ public class EnemigoComun : MonoBehaviour
             myTransform.position += (target.position - myTransform.position) * moveSpeed * Time.deltaTime;
             //Lineas de debug que aparecen en la ventana Scene
             Debug.DrawLine(target.transform.position, transform.position, Color.red, Time.deltaTime, false);
-        } 
-        else if(timer < 0)
+        }
+        else if (timer < 0)
         {
             direction = -direction;
             timer = changeTime;
@@ -89,7 +89,7 @@ public class EnemigoComun : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D other)
     {
-       LiuBangCH player = other.gameObject.GetComponent<LiuBangCH>();
+        LiuBangCH player = other.gameObject.GetComponent<LiuBangCH>();
 
         if (player != null)
         {
@@ -112,7 +112,7 @@ public class EnemigoComun : MonoBehaviour
     {
         currentHealth -= damage;
 
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             Die();
         }
@@ -127,3 +127,4 @@ public class EnemigoComun : MonoBehaviour
     }
 
 }
+
