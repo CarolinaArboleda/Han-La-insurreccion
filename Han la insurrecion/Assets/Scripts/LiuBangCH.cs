@@ -22,6 +22,8 @@ public class LiuBangCH : MonoBehaviour
     public float attackRate = 2f; //cooldown del ataque a melee
     float nextAttackTime = 0f;
     public LayerMask enemyLayers;
+    private Animator anim;
+    public GameObject IcePrefab;
 
     public int health { get { return currentHealth; } }
     int currentHealth;
@@ -51,6 +53,8 @@ public class LiuBangCH : MonoBehaviour
 
         //enableShooting = false;
         //shoots = 5;
+        anim = GetComponent<Animator>();
+        anim.SetInteger("Estado", 0);
 
 
     }
@@ -67,6 +71,7 @@ public class LiuBangCH : MonoBehaviour
         {
             lookDirection.Set(move.x, move.y);
             lookDirection.Normalize();
+            anim.SetInteger("Estado", 0);
         }
 
         //animator.SetFloat("Look X", lookDirection.x);
@@ -86,30 +91,40 @@ public class LiuBangCH : MonoBehaviour
                 isInvincible = false;
         }
 
-        if(Time.time >= nextAttackTime)
+        if (Time.time >= nextAttackTime)
         {
             if (Input.GetKeyDown(KeyCode.C))
             {
                 Attack();
                 nextAttackTime = Time.time + 1f / attackRate;
+                anim.SetInteger("Estado", 3);
             }
 
-           
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            LaunchIce();
         }
 
 
-       
+            //animator.SetTrigger("Launch");
 
-        //if (isSlowed)
-        //{
-        // speedTimer -= Time.deltaTime;
-        //if (speedTimer < 0)
-        //{
-        //isSlowed = false;
-        //ChangeSpeed();
-        //Debug.Log("Speed: " + speed);
-        //}
-        //}
+
+
+
+
+            //if (isSlowed)
+            //{
+            // speedTimer -= Time.deltaTime;
+            //if (speedTimer < 0)
+            //{
+            //isSlowed = false;
+            //ChangeSpeed();
+            //Debug.Log("Speed: " + speed);
+            //}
+            //}
 
 
             //if (Input.GetKeyDown(KeyCode.C))
@@ -129,99 +144,108 @@ public class LiuBangCH : MonoBehaviour
 
 
 
-    }
-
-    void Attack()
-    {
-
-      Collider2D[] hitEnemies =  Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-        Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(attackPoint2.position, attackRange, enemyLayers);
-
-        foreach (Collider2D enemy in hitEnemies)
-        {
-            enemy.GetComponent<EnemigoComun>().takeDamage(attackDamage);
         }
 
-        foreach (Collider2D enemy in hitEnemies2)
+        void Attack()
         {
-            enemy.GetComponent<EnemigoComun>().takeDamage(attackDamage);
+
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+            Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(attackPoint2.position, attackRange, enemyLayers);
+
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                enemy.GetComponent<EnemigoComun>().takeDamage(attackDamage);
+            }
+
+            foreach (Collider2D enemy in hitEnemies2)
+            {
+                enemy.GetComponent<EnemigoComun>().takeDamage(attackDamage);
+            }
         }
-    }
 
 
-    void OnDrawGizmosSelected()
-    {
-        if (attackPoint == null)
-            return;
-        if (attackPoint2 == null)
-            return;
-
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
-        Gizmos.DrawWireSphere(attackPoint2.position, attackRange);
-    }
-    public void ChangeHealth(int amount)
-    {
-        if (amount < 0)
+        void OnDrawGizmosSelected()
         {
-            if (isInvincible)
+            if (attackPoint == null)
+                return;
+            if (attackPoint2 == null)
                 return;
 
-            isInvincible = true;
-            invincibleTimer = timeInvincible;
+            Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+            Gizmos.DrawWireSphere(attackPoint2.position, attackRange);
+        }
+        public void ChangeHealth(int amount)
+        {
+            if (amount < 0)
+            {
+                if (isInvincible)
+                    return;
+
+                isInvincible = true;
+                invincibleTimer = timeInvincible;
+            }
+
+            currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+
+            Debug.Log(currentHealth + "/" + maxHealth);
         }
 
-        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+    void LaunchIce()
+    {
+        GameObject iceObject = Instantiate(IcePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
 
-        Debug.Log(currentHealth + "/" + maxHealth);
-    }
+        Congelar congelar = iceObject.GetComponent<Congelar>();
+        congelar.LaunchIce(lookDirection, 800);
 
-    //public void ChangeScore(int amount)
-    //{
-      //  currentScore = currentScore + amount;
-       // Debug.Log(currentScore);
-    //}
 
-    //public void ChangeSpeed()
-    //{
-      //  speed = speed * 2;
-       // Debug.Log("Speed: " + speed);
-    //}
+        //public void ChangeScore(int amount)
+        //{
+        //  currentScore = currentScore + amount;
+        // Debug.Log(currentScore);
+        //}
 
-    //public void ChangeSpeedLow()
-    //{
+        //public void ChangeSpeed()
+        //{
+        //  speed = speed * 2;
+        // Debug.Log("Speed: " + speed);
+        //}
+
+        //public void ChangeSpeedLow()
+        //{
 
         //speed = speed / 2;
-       // Debug.Log("Speed: " + speed);
+        // Debug.Log("Speed: " + speed);
 
-       // isSlowed = true;
+        // isSlowed = true;
         //speedTimer = timeSlowed;
 
-    //}
+        //}
 
-    //void Launch()
-    //{
-      //  GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+        //void Launch()
+        //{
+        //  GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
 
         //Projectile projectile = projectileObject.GetComponent<Projectile>();
         //projectile.Launch(lookDirection, 300);
 
         //animator.SetTrigger("Launch");
-    //}
+        //}
 
-    //void LaunchScrew()
-    //{
-       // GameObject screwObject = Instantiate(screwPrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+        //void LaunchScrew()
+        //{
+        // GameObject screwObject = Instantiate(screwPrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
 
         //ScrewProjectile screwProjectile = screwObject.GetComponent<ScrewProjectile>();
-       // screwProjectile.LaunchScrew(lookDirection, 300);
+        // screwProjectile.LaunchScrew(lookDirection, 300);
 
-       // animator.SetTrigger("Launch");
-   // }
+        // animator.SetTrigger("Launch");
+        // }
 
-    //public void Shooting()
-    //{
-     //   enableShooting = true;
+        //public void Shooting()
+        //{
+        //   enableShooting = true;
         //shoots = 5;
-       // Debug.Log("Shoots: ");
-   // }
+        // Debug.Log("Shoots: ");
+        // }
+    }
 }

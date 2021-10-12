@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 8748044876344262688}
   - component: {fileID: 8748044876344262695}
   - component: {fileID: 8748044876344262694}
+  - component: {fileID: 1424422048554648850}
   m_Layer: 0
   m_Name: liuBangSprite
   m_TagString: Player
@@ -196,6 +197,7 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64
+  IcePrefab: {fileID: 8391566926362300779, guid: 2b47e76cbd8cfbb4ba6a15da57ef5053, type: 3}
 --- !u!50 &8748044876344262694
 Rigidbody2D:
   serializedVersion: 4
@@ -217,3 +219,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &1424422048554648850
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8748044876344262693}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b0ed52081ef58504bb164215a190530e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

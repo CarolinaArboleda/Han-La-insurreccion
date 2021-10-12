@@ -14581,6 +14581,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: soldado
       objectReference: {fileID: 0}
+    - target: {fileID: 6050133983183800729, guid: af7b4985884ad744e99bbebee0708f6b, type: 3}
+      propertyPath: m_TagString
+      value: Enemigo
+      objectReference: {fileID: 0}
     - target: {fileID: 6050133983183800732, guid: af7b4985884ad744e99bbebee0708f6b, type: 3}
       propertyPath: m_RootOrder
       value: 2
