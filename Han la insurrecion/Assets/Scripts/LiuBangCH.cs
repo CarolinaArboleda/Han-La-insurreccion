@@ -16,6 +16,7 @@ public class LiuBangCH : MonoBehaviour
     //float speedTimer;
 
     public Transform attackPoint;
+    public Transform attackPoint2;
     public float attackRange = 0.5f;
     public int attackDamage = 40;
     public float attackRate = 2f; //cooldown del ataque a melee
@@ -87,12 +88,15 @@ public class LiuBangCH : MonoBehaviour
 
         if(Time.time >= nextAttackTime)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.C))
             {
                 Attack();
                 nextAttackTime = Time.time + 1f / attackRate;
             }
+
+           
         }
+
 
        
 
@@ -129,20 +133,31 @@ public class LiuBangCH : MonoBehaviour
 
     void Attack()
     {
-      Collider2D[] hitEnemies =  Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
-        foreach(Collider2D enemy in hitEnemies)
+      Collider2D[] hitEnemies =  Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(attackPoint2.position, attackRange, enemyLayers);
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponent<EnemigoComun>().takeDamage(attackDamage);
+        }
+
+        foreach (Collider2D enemy in hitEnemies2)
         {
             enemy.GetComponent<EnemigoComun>().takeDamage(attackDamage);
         }
     }
 
+
     void OnDrawGizmosSelected()
     {
         if (attackPoint == null)
             return;
+        if (attackPoint2 == null)
+            return;
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Gizmos.DrawWireSphere(attackPoint2.position, attackRange);
     }
     public void ChangeHealth(int amount)
     {

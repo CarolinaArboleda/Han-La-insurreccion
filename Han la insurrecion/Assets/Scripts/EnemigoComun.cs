@@ -124,6 +124,11 @@ public class EnemigoComun : MonoBehaviour
 
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
+
+        //Animator
+
+        Destroy(gameObject);
+
     }
 
 }
