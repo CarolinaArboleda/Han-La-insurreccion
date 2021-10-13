@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8391566926362300778}
   - component: {fileID: 5112032584304042110}
   - component: {fileID: 8533611061827939617}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbb21be567a7e8c4bb166e9b33654ddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frozen: 0
 --- !u!212 &8391566926362300778
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -85,7 +86,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 91e1ae0b6574f654ea300cad9e912f3d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

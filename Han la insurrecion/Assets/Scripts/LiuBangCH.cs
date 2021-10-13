@@ -6,11 +6,14 @@ public class LiuBangCH : MonoBehaviour
 {
     public float speed = 3.0f;
 
+    public int initMaxHealth = 5;
+    public int additMaxHealth = 0;
     public int maxHealth = 5;
+
     //public int inicialScore;
     public float timeInvincible = 2.0f;
     //public float timeSlowed = 2.0f;
-    //public GameObject projectilePrefab;
+    public GameObject projectilePrefab;
     //public GameObject screwPrefab;
     //bool isSlowed;
     //float speedTimer;
@@ -25,8 +28,11 @@ public class LiuBangCH : MonoBehaviour
     private Animator anim;
     public GameObject IcePrefab;
 
+    public bool conseguidoCongelar = false;
+    public bool conseguidoFuego = false;
+
     public int health { get { return currentHealth; } }
-    int currentHealth;
+    public int currentHealth;
     //public int score { get { return currentScore; } }
     //int currentScore;
     bool isInvincible;
@@ -55,13 +61,13 @@ public class LiuBangCH : MonoBehaviour
         //shoots = 5;
         anim = GetComponent<Animator>();
         anim.SetInteger("Estado", 0);
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        maxHealth = initMaxHealth + additMaxHealth;
+
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
@@ -103,39 +109,43 @@ public class LiuBangCH : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (conseguidoCongelar)
         {
-            LaunchIce();
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                LaunchIce();
+            }
         }
 
 
-            //animator.SetTrigger("Launch");
+
+        //animator.SetTrigger("Launch");
 
 
 
 
 
-            //if (isSlowed)
-            //{
-            // speedTimer -= Time.deltaTime;
-            //if (speedTimer < 0)
-            //{
-            //isSlowed = false;
-            //ChangeSpeed();
-            //Debug.Log("Speed: " + speed);
-            //}
-            //}
+        //if (isSlowed)
+        //{
+        // speedTimer -= Time.deltaTime;
+        //if (speedTimer < 0)
+        //{
+        //isSlowed = false;
+        //ChangeSpeed();
+        //Debug.Log("Speed: " + speed);
+        //}
+        //}
 
-
-            //if (Input.GetKeyDown(KeyCode.C))
-            // {
-            //if (enableShooting && shoots > 0)
-            //{
-            //Launch();
-            //shoots--;
-            //}
-            // }
-
+        if (conseguidoFuego)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                //if (enableShooting && shoots > 0)
+                //{
+                Launch();
+                //shoots--;
+            }
+        }
 
             //if (Input.GetKeyDown(KeyCode.V))
             // {
@@ -196,6 +206,7 @@ public class LiuBangCH : MonoBehaviour
 
         Congelar congelar = iceObject.GetComponent<Congelar>();
         congelar.LaunchIce(lookDirection, 800);
+    }
 
 
         //public void ChangeScore(int amount)
@@ -220,16 +231,15 @@ public class LiuBangCH : MonoBehaviour
         //speedTimer = timeSlowed;
 
         //}
+        void Launch()
+        {
+          GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
 
-        //void Launch()
-        //{
-        //  GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
-
-        //Projectile projectile = projectileObject.GetComponent<Projectile>();
-        //projectile.Launch(lookDirection, 300);
+        BolaFuego projectile = projectileObject.GetComponent<BolaFuego>();
+        projectile.Launch(lookDirection, 800);
 
         //animator.SetTrigger("Launch");
-        //}
+        }
 
         //void LaunchScrew()
         //{
@@ -247,5 +257,5 @@ public class LiuBangCH : MonoBehaviour
         //shoots = 5;
         // Debug.Log("Shoots: ");
         // }
-    }
+    
 }

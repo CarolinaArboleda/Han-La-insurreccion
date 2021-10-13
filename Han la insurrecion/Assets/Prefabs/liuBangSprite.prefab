@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3150078254258819872}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6706398707583007388}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AttackPoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 8748044876344262695}
   - component: {fileID: 8748044876344262694}
   - component: {fileID: 1424422048554648850}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: liuBangSprite
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0073745847, y: -0.85103166}
+  m_Offset: {x: -0.089992106, y: -0.7849377}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -172,7 +172,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2530221, y: 2.0955217}
+  m_Size: {x: 1.087787, y: 1.9633337}
   m_EdgeRadius: 0
 --- !u!114 &8748044876344262695
 MonoBehaviour:
@@ -186,9 +186,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fad68d68f2ae414bbf25d224d826629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 15
+  initMaxHealth: 5
+  additMaxHealth: 0
   maxHealth: 5
   timeInvincible: 2
+  projectilePrefab: {fileID: 7224096935402631078, guid: c158f5603ec9df2458611310a653793e, type: 3}
   attackPoint: {fileID: 3150078254258819872}
   attackPoint2: {fileID: 6706398707583007388}
   attackRange: 1
@@ -198,6 +201,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   IcePrefab: {fileID: 8391566926362300779, guid: 2b47e76cbd8cfbb4ba6a15da57ef5053, type: 3}
+  conseguidoCongelar: 0
+  conseguidoFuego: 0
+  currentHealth: 0
 --- !u!50 &8748044876344262694
 Rigidbody2D:
   serializedVersion: 4
