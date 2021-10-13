@@ -42,6 +42,10 @@ public class LiuBangCH : MonoBehaviour
     float cooldownIceTimer;
     public float timecooldownIce = 2.0f;
 
+    bool cooldownFire;
+    float cooldownFireTimer;
+    public float timecooldownFire = 2.0f;
+
     //bool enableShooting;
     //int shoots;
 
@@ -105,7 +109,15 @@ public class LiuBangCH : MonoBehaviour
         {
             cooldownIceTimer -= Time.deltaTime;
             if (cooldownIceTimer < 0)
+            if (cooldownIceTimer < 0)
                 cooldownIce = false;
+        }
+
+        if (cooldownFire)
+        {
+            cooldownFireTimer -= Time.deltaTime;
+            if (cooldownFireTimer < 0)
+                cooldownFire = false;
         }
 
         if (Time.time >= nextAttackTime)
@@ -249,13 +261,18 @@ public class LiuBangCH : MonoBehaviour
         //}
         void Launch()
         {
-          GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+        if (cooldownFire)
+            return;
+
+        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
 
         BolaFuego projectile = projectileObject.GetComponent<BolaFuego>();
         projectile.Launch(lookDirection, 800);
+        cooldownFire = true;
+        cooldownFireTimer = timecooldownIce;
 
         //animator.SetTrigger("Launch");
-        }
+    }
 
         //void LaunchScrew()
         //{

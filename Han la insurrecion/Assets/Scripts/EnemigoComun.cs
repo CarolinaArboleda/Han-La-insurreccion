@@ -74,8 +74,13 @@ public class EnemigoComun : MonoBehaviour
         {
             frozenTimer -= Time.deltaTime;
             if (frozenTimer <= 0)
+            {
                 Debug.Log("unu");
+                ChangeSpeed();
                 isFrozen = false;
+
+            }
+                
         }
     }
 
@@ -112,21 +117,24 @@ public class EnemigoComun : MonoBehaviour
     public void ChangeSpeed()
     {
 
-        isFrozen = true;
-        frozenTimer = timeFrozen;
+        // isFrozen = true;
+        // frozenTimer  -= Time.deltaTime;
+        speed = speed * 0;
+        Debug.Log("Speed: " + speed);
 
-        if (isFrozen)
-        {
-            speed = speed * 0;
-            moveSpeed = moveSpeed * 0;
-            rotationSpeed = rotationSpeed * 0;
-        }
-        else
-        {
-            return;
-        }
+        // speed = speed * 0;
+        // moveSpeed = moveSpeed * 0;
+        // rotationSpeed = rotationSpeed * 0;
 
-        Debug.Log(isFrozen);
+
+
+        //if (frozenTimer <= 0)
+        // {
+        //   speed = 1.5f;
+        //}
+
+
+        //Debug.Log(isFrozen);
     }
 
     public void Fix()

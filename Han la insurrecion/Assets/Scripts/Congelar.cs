@@ -24,6 +24,8 @@ public class Congelar : MonoBehaviour
         {
             enemigo.ChangeSpeed();
         }
+
+        enemigo.ChangeSpeed();
     }
 
 
