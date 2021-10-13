@@ -38,6 +38,10 @@ public class LiuBangCH : MonoBehaviour
     bool isInvincible;
     float invincibleTimer;
 
+    bool cooldownIce;
+    float cooldownIceTimer;
+    public float timecooldownIce = 2.0f;
+
     //bool enableShooting;
     //int shoots;
 
@@ -95,6 +99,13 @@ public class LiuBangCH : MonoBehaviour
             invincibleTimer -= Time.deltaTime;
             if (invincibleTimer < 0)
                 isInvincible = false;
+        }
+
+        if (cooldownIce)
+        {
+            cooldownIceTimer -= Time.deltaTime;
+            if (cooldownIceTimer < 0)
+                cooldownIce = false;
         }
 
         if (Time.time >= nextAttackTime)
@@ -202,10 +213,15 @@ public class LiuBangCH : MonoBehaviour
 
     void LaunchIce()
     {
+        if (cooldownIce)
+            return;
+
         GameObject iceObject = Instantiate(IcePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
 
         Congelar congelar = iceObject.GetComponent<Congelar>();
         congelar.LaunchIce(lookDirection, 800);
+        cooldownIce = true;
+        cooldownIceTimer = timecooldownIce;
     }
 
 

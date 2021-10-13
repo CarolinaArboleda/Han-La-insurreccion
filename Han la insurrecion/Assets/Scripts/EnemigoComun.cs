@@ -14,6 +14,10 @@ public class EnemigoComun : MonoBehaviour
     bool broken = true;
     int shootsFix;
 
+    bool isFrozen;
+    float frozenTimer;
+    public float timeFrozen = 2.0f;
+
     Transform target;
     float moveSpeed = 1.5f;
     private float rotationSpeed = 6;
@@ -65,6 +69,14 @@ public class EnemigoComun : MonoBehaviour
             direction = -direction;
             timer = changeTime;
         }
+
+        if (isFrozen)
+        {
+            frozenTimer -= Time.deltaTime;
+            if (frozenTimer <= 0)
+                Debug.Log("unu");
+                isFrozen = false;
+        }
     }
 
     void FixedUpdate()
@@ -95,6 +107,26 @@ public class EnemigoComun : MonoBehaviour
         {
             player.ChangeHealth(-1);
         }
+    }
+
+    public void ChangeSpeed()
+    {
+
+        isFrozen = true;
+        frozenTimer = timeFrozen;
+
+        if (isFrozen)
+        {
+            speed = speed * 0;
+            moveSpeed = moveSpeed * 0;
+            rotationSpeed = rotationSpeed * 0;
+        }
+        else
+        {
+            return;
+        }
+
+        Debug.Log(isFrozen);
     }
 
     public void Fix()

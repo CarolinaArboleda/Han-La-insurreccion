@@ -15052,5 +15052,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: liuBangSprite
       objectReference: {fileID: 0}
+    - target: {fileID: 8748044876344262695, guid: e48511c24594a9c40bd2d1be83d4646a, type: 3}
+      propertyPath: speed
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e48511c24594a9c40bd2d1be83d4646a, type: 3}
