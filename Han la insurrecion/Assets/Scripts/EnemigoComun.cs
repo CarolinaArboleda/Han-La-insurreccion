@@ -120,26 +120,9 @@ public class EnemigoComun : MonoBehaviour
 
     public void ChangeSpeed()
     {
-
-        // isFrozen = true;
-        // frozenTimer  -= Time.deltaTime;
         speed = speed * 0;
         moveSpeed = moveSpeed * 0;
         Debug.Log("Speed: " + speed);
-
-        // speed = speed * 0;
-        // moveSpeed = moveSpeed * 0;
-        // rotationSpeed = rotationSpeed * 0;
-
-
-
-        //if (frozenTimer <= 0)
-        // {
-        //   speed = 1.5f;
-        //}
-
-
-        //Debug.Log(isFrozen);
     }
 
     public void Fix()
