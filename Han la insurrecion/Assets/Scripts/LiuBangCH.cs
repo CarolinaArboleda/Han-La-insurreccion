@@ -126,7 +126,7 @@ public class LiuBangCH : MonoBehaviour
             {
                 Attack();
                 nextAttackTime = Time.time + 1f / attackRate;
-                anim.SetInteger("Estado", 3);
+                ataque_melee();
             }
 
 
@@ -236,30 +236,41 @@ public class LiuBangCH : MonoBehaviour
         cooldownIceTimer = timecooldownIce;
     }
 
+    void ataque_melee()
+    {
+        anim.SetInteger("Estado", 3);
+        StartCoroutine("returne");
+    }
 
-        //public void ChangeScore(int amount)
-        //{
-        //  currentScore = currentScore + amount;
-        // Debug.Log(currentScore);
-        //}
+    IEnumerator returne()
+    {
+        yield return new WaitForSeconds(.06f);
+        anim.SetInteger("Estado", 0);
+    }
 
-        //public void ChangeSpeed()
-        //{
-        //  speed = speed * 2;
-        // Debug.Log("Speed: " + speed);
-        //}
+    //public void ChangeScore(int amount)
+    //{
+    //  currentScore = currentScore + amount;
+    // Debug.Log(currentScore);
+    //}
 
-        //public void ChangeSpeedLow()
-        //{
+    //public void ChangeSpeed()
+    //{
+    //  speed = speed * 2;
+    // Debug.Log("Speed: " + speed);
+    //}
 
-        //speed = speed / 2;
-        // Debug.Log("Speed: " + speed);
+    //public void ChangeSpeedLow()
+    //{
 
-        // isSlowed = true;
-        //speedTimer = timeSlowed;
+    //speed = speed / 2;
+    // Debug.Log("Speed: " + speed);
 
-        //}
-        void Launch()
+    // isSlowed = true;
+    //speedTimer = timeSlowed;
+
+    //}
+    void Launch()
         {
         if (cooldownFire)
             return;
