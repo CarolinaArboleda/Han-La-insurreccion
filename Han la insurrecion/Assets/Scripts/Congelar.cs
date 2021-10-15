@@ -23,9 +23,10 @@ public class Congelar : MonoBehaviour
         if (enemigo != null)
         {
             enemigo.ChangeSpeed();
+            enemigo.isFrozen = true;   
         }
 
-        enemigo.ChangeSpeed();
+      
     }
 
 
