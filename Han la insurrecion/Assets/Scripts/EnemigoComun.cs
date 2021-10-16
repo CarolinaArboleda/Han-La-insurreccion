@@ -20,7 +20,6 @@ public class EnemigoComun : MonoBehaviour
 
     Transform target;
     float moveSpeed = 1.5f;
-    private float rotationSpeed = 6;
 
     Transform myTransform;
 

@@ -17,6 +17,7 @@ public class Congelar : MonoBehaviour
     {
         rigidbody2d.AddForce(direction * force);
     }
+
     void Update()
     {
         destroyTime -= Time.deltaTime;
@@ -30,6 +31,20 @@ public class Congelar : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         EnemigoComun enemigo = other.gameObject.GetComponent<EnemigoComun>();
+        fenix fenix = other.gameObject.GetComponent<fenix>();
+        dragon dragon = other.gameObject.GetComponent<dragon>();
+
+        if (fenix != null)
+        {
+            fenix.ChangeSpeed();
+            fenix.isFrozen = true;
+        }
+
+        if (dragon != null)
+        {
+            dragon.ChangeSpeed();
+            dragon.isFrozen = true;
+        }
 
         if (enemigo != null)
         {

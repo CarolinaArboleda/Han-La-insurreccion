@@ -10,7 +10,6 @@ public class fenix : MonoBehaviour
     public float timeFrozen = 50.0f;
     public float speed = 2.5f;
 
-    // Start is called before the first frame update
     void Start()
     {
         frozenTimer = timeFrozen;
@@ -29,10 +28,9 @@ public class fenix : MonoBehaviour
     public void ChangeSpeed()
     {
         speed = speed * 0;
-        Debug.Log("Speed: " + speed);
+        Debug.Log("congelado fenix");
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isFrozen)
@@ -40,7 +38,6 @@ public class fenix : MonoBehaviour
             frozenTimer -= Time.deltaTime;
             if (frozenTimer <= 0)
             {
-                Debug.Log("unu");
                 speed = 2.5f;
                 isFrozen = false;
                 frozenTimer = timeFrozen;
