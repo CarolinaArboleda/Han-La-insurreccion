@@ -187,6 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 50
+  speedGuard: 50
   initMaxHealth: 5
   additMaxHealth: 0
   maxHealth: 5
@@ -203,8 +204,11 @@ MonoBehaviour:
   IcePrefab: {fileID: 8391566926362300779, guid: 2b47e76cbd8cfbb4ba6a15da57ef5053, type: 3}
   conseguidoCongelar: 0
   conseguidoFuego: 0
+  timeDashing: 0.4
   currentHealth: 0
   timecooldownIce: 2
+  timecooldownDash: 4
+  timecooldownFire: 2
 --- !u!50 &8748044876344262694
 Rigidbody2D:
   serializedVersion: 4

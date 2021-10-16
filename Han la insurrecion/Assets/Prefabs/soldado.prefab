@@ -49,6 +49,8 @@ MonoBehaviour:
   speed: 2
   vertical: 0
   changeTime: 3
+  isFrozen: 0
+  timeFrozen: 1.5
   maxHealth: 100
 --- !u!212 &6050133983183800731
 SpriteRenderer:

@@ -16,7 +16,7 @@ public class EnemigoComun : MonoBehaviour
 
     public bool isFrozen;
     float frozenTimer;
-    public float timeFrozen = 50.0f;
+    public float timeFrozen = 5.0f;
 
     Transform target;
     float moveSpeed = 1.5f;

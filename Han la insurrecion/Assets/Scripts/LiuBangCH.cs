@@ -5,6 +5,7 @@ using UnityEngine;
 public class LiuBangCH : MonoBehaviour
 {
     public float speed = 3.0f;
+    public float speedGuard = 0f;
 
     public int initMaxHealth = 5;
     public int additMaxHealth = 0;
@@ -12,11 +13,10 @@ public class LiuBangCH : MonoBehaviour
 
     //public int inicialScore;
     public float timeInvincible = 2.0f;
-    //public float timeSlowed = 2.0f;
+   
     public GameObject projectilePrefab;
     //public GameObject screwPrefab;
-    //bool isSlowed;
-    //float speedTimer;
+    
 
     public Transform attackPoint;
     public Transform attackPoint2;
@@ -30,6 +30,11 @@ public class LiuBangCH : MonoBehaviour
 
     public bool conseguidoCongelar = false;
     public bool conseguidoFuego = false;
+    public bool conseguidoDash = false;
+
+    bool isDashing = false;
+    float dashTimer;
+    public float timeDashing = 1.0f;
 
     public int health { get { return currentHealth; } }
     public int currentHealth;
@@ -41,6 +46,10 @@ public class LiuBangCH : MonoBehaviour
     bool cooldownIce;
     float cooldownIceTimer;
     public float timecooldownIce = 2.0f;
+
+    bool cooldownDash;
+    float cooldownDashTimer;
+    public float timecooldownDash = 2.5f;
 
     bool cooldownFire;
     float cooldownFireTimer;
@@ -69,6 +78,7 @@ public class LiuBangCH : MonoBehaviour
         //shoots = 5;
         anim = GetComponent<Animator>();
         anim.SetInteger("Estado", 0);
+        speedGuard = speed;
     }
 
     // Update is called once per frame
@@ -105,10 +115,20 @@ public class LiuBangCH : MonoBehaviour
                 isInvincible = false;
         }
 
+        if (conseguidoDash)
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                Dash();
+
+                dashTimer -= Time.deltaTime;
+            }
+        }
+        
         if (cooldownIce)
         {
             cooldownIceTimer -= Time.deltaTime;
-            if (cooldownIceTimer < 0)
+            
             if (cooldownIceTimer < 0)
                 cooldownIce = false;
         }
@@ -118,6 +138,13 @@ public class LiuBangCH : MonoBehaviour
             cooldownFireTimer -= Time.deltaTime;
             if (cooldownFireTimer < 0)
                 cooldownFire = false;
+        }
+
+        if (cooldownDash)
+        {
+            cooldownDashTimer -= Time.deltaTime;
+            if (cooldownDashTimer < 0)
+                cooldownDash = false;
         }
 
         if (Time.time >= nextAttackTime)
@@ -148,16 +175,16 @@ public class LiuBangCH : MonoBehaviour
 
 
 
-        //if (isSlowed)
-        //{
-        // speedTimer -= Time.deltaTime;
-        //if (speedTimer < 0)
-        //{
-        //isSlowed = false;
-        //ChangeSpeed();
-        //Debug.Log("Speed: " + speed);
-        //}
-        //}
+        if (isDashing)
+        {
+            dashTimer -= Time.deltaTime;
+            if (dashTimer < 0)
+            {
+                isDashing = false;
+                speed = speedGuard;
+                Debug.Log("Speed: " + speed);
+            }
+        }
 
         if (conseguidoFuego)
         {
@@ -254,22 +281,23 @@ public class LiuBangCH : MonoBehaviour
     // Debug.Log(currentScore);
     //}
 
-    //public void ChangeSpeed()
-    //{
-    //  speed = speed * 2;
-    // Debug.Log("Speed: " + speed);
-    //}
+    
 
-    //public void ChangeSpeedLow()
-    //{
+    public void Dash()
+    {
+        if (cooldownDash)
+            return;
 
-    //speed = speed / 2;
-    // Debug.Log("Speed: " + speed);
+        speed = speed * 3.4f;
+        Debug.Log("Speed: " + speed);
 
-    // isSlowed = true;
-    //speedTimer = timeSlowed;
+        isDashing = true;
+        dashTimer = timeDashing;
 
-    //}
+        cooldownDash = true;
+        cooldownDashTimer = timecooldownDash;
+
+    }
     void Launch()
         {
         if (cooldownFire)
@@ -280,7 +308,7 @@ public class LiuBangCH : MonoBehaviour
         BolaFuego projectile = projectileObject.GetComponent<BolaFuego>();
         projectile.Launch(lookDirection, 800);
         cooldownFire = true;
-        cooldownFireTimer = timecooldownIce;
+        cooldownFireTimer = timecooldownFire;
 
         //animator.SetTrigger("Launch");
     }
