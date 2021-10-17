@@ -5,10 +5,10 @@ using UnityEngine;
 public class ataque_dragon : MonoBehaviour
 {
     public GameObject counter;
-    public int firstShotTime=0;
-    public int secondShotTime=0;
+    public int firstShotTime = 0;
     public float speed = 5;
     public int direction = 0;
+    public bool horizontal;
 
 
     Rigidbody2D rigidbody2D;
@@ -18,14 +18,54 @@ public class ataque_dragon : MonoBehaviour
         rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
-    void FixedUpdate()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (firstShotTime == counter.GetComponent<TimerCountdown>().secondsLeft)
+        LiuBangCH player = other.gameObject.GetComponent<LiuBangCH>();
+
+        if (player != null)
         {
-            Vector2 position = rigidbody2D.position;
-            position.y = position.y + Time.deltaTime * speed * direction; ;
-            rigidbody2D.MovePosition(position);
+            player.ChangeHealth(-1);
         }
     }
 
+    void FixedUpdate()
+    {
+        if (firstShotTime >= counter.GetComponent<TimerCountdown>().secondsLeft)
+        {
+            if (horizontal)
+            {
+                Vector2 position = rigidbody2D.position;
+                position.x = position.x + Time.deltaTime * speed * direction; ;
+                rigidbody2D.MovePosition(position);
+
+                if (direction == -1)
+                {
+                    rigidbody2D.transform.localScale = new Vector2(-1, 1);
+                }
+                if (direction == 1)
+                {
+                    rigidbody2D.transform.localScale = new Vector2(1, 1);
+                }
+
+            }
+            else
+            {
+                Vector2 position = rigidbody2D.position;
+                position.y = position.y + Time.deltaTime * speed * direction; ;
+                rigidbody2D.MovePosition(position);
+
+                if (direction == -1)
+                {
+                    rigidbody2D.transform.localScale = new Vector2(1, 1);
+                }
+                if (direction == 1)
+                {
+                    rigidbody2D.transform.localScale = new Vector2(1, -1);
+                }
+
+            }
+        }
+
+
+    }
 }

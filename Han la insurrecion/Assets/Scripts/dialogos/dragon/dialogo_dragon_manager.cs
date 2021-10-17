@@ -65,8 +65,7 @@ public class dialogo_dragon_manager : MonoBehaviour
         Destroy(FindObjectOfType<deteccion_dragon_trigger>());
 
         counter.GetComponent<TimerCountdown>().endDialogue=true;
-        Destroy(dragon);
-
+        dragon.SetActive(false);
     }
 
 }
