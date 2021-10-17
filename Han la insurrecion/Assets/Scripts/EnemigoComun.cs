@@ -24,7 +24,7 @@ public class EnemigoComun : MonoBehaviour
     Transform myTransform;
 
     public int maxHealth = 100;
-    int currentHealth;
+    public int currentHealth;
 
     Animator animator;
 
@@ -138,6 +138,7 @@ public class EnemigoComun : MonoBehaviour
     public void takeDamage(int damage)
     {
         currentHealth -= damage;
+        Debug.Log(currentHealth + "/" + maxHealth);
 
         if (currentHealth <= 0)
         {

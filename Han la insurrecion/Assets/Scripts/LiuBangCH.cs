@@ -22,6 +22,7 @@ public class LiuBangCH : MonoBehaviour
     public Transform attackPoint2;
     public float attackRange = 0.5f;
     public int attackDamage = 40;
+    public int attackBonus = 0;
     public float attackRate = 2f; //cooldown del ataque a melee
     float nextAttackTime = 0f;
     public LayerMask enemyLayers;
@@ -214,12 +215,12 @@ public class LiuBangCH : MonoBehaviour
 
             foreach (Collider2D enemy in hitEnemies)
             {
-                enemy.GetComponent<EnemigoComun>().takeDamage(attackDamage);
+                enemy.GetComponent<EnemigoComun>().takeDamage(attackDamage+attackBonus);
             }
 
             foreach (Collider2D enemy in hitEnemies2)
             {
-                enemy.GetComponent<EnemigoComun>().takeDamage(attackDamage);
+                enemy.GetComponent<EnemigoComun>().takeDamage(attackDamage+attackBonus);
             }
         }
 
