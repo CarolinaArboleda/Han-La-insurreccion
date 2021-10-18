@@ -198,12 +198,16 @@ public class LiuBangCH : MonoBehaviour
             }
         }
 
-            //if (Input.GetKeyDown(KeyCode.V))
-            // {
-            //   LaunchScrew();
-            //}
+        //if (Input.GetKeyDown(KeyCode.V))
+        // {
+        //   LaunchScrew();
+        //}
 
-
+        if (currentHealth <= 0)
+        {
+            FindObjectOfType<manager>().GameOver();
+            
+        }
 
         }
 
