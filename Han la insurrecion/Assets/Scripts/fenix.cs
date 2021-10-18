@@ -12,15 +12,23 @@ public class fenix : MonoBehaviour
     public Transform centro;
     private float xo, yo, x, y, r, angulo, tiempo;
     public bool endDialogue = false;
+    public bool dialogueOnce = false;
     public GameObject barrera;
+    public GameObject textTrigger;
 
     bool cooldownProjectile;
     float cooldownProjectileTimer;
-    public float timecooldownProjectile = 0.1f;
+    public float timecooldownProjectile = 5f;
 
     public GameObject projectilePrefab;
+    public GameObject pickupFenix;
     Transform target;
     Transform myTransform;
+
+    public int maxHealth = 100;
+    public int currentHealth;
+
+    public bool death = false;
 
     Rigidbody2D rigidbody2d;
 
@@ -34,22 +42,14 @@ public class fenix : MonoBehaviour
         rigidbody2d = GetComponent<Rigidbody2D>();
         target = GameObject.FindWithTag("Player").transform; //target the player
         frozenTimer = timeFrozen;
+        cooldownProjectileTimer = timecooldownProjectile;
         r = 12f;
-        angulo = Mathf.PI/2;
+        angulo = Mathf.PI / 2;
         xo = centro.transform.position.x;
         yo = centro.transform.position.y;
         tiempo = 0f;
-        
-    }
+        currentHealth = maxHealth;
 
-    void OnCollisionStay2D(Collision2D other)
-    {
-        LiuBangCH player = other.gameObject.GetComponent<LiuBangCH>();
-
-        if (player != null)
-        {
-            player.ChangeHealth(-1);
-        }
     }
 
     public void ChangeSpeed()
@@ -83,22 +83,32 @@ public class fenix : MonoBehaviour
         if (endDialogue)
         {
             barrera.SetActive(true);
-            if (tiempo >= 0.045f)
+            if (tiempo >= 0.05f)
             {
-                if (!isFrozen)
+                if (!isFrozen && !death)
                 {
                     x = xo + r * Mathf.Cos(angulo);
                     y = yo + r * Mathf.Sin(angulo);
                     angulo = (angulo - Mathf.PI / 32) % (2 * Mathf.PI);
                     transform.localPosition = new Vector2(x, y);
-                    launch();
                     tiempo = 0f;
+                    launch();
+
                 }
             }
             else
             {
                 tiempo += Time.deltaTime;
             }
+
+        }
+
+        if (death && endDialogue && !dialogueOnce)
+        {
+            pickupFenix.SetActive(true);
+            textTrigger.GetComponent<dialogo_fenix_trigger>().TriggerDialogue();
+            endDialogue = false;
+            dialogueOnce = true;
         }
     }
 
@@ -114,9 +124,33 @@ public class fenix : MonoBehaviour
 
         GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
         proyectil_fenix projectile = projectileObject.GetComponent<proyectil_fenix>();
-        projectile.Launch(direction,800);
+        projectile.Launch(direction,400);
 
         cooldownProjectile = true;
         cooldownProjectileTimer = timecooldownProjectile;
     }
+
+
+    public void takeDamage(int damage)
+    {
+        currentHealth -= damage;
+        Debug.Log(currentHealth + "/" + maxHealth);
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Debug.Log("Enemy died!");
+        death = true;
+
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
+        Destroy(gameObject);
+
+    }
+
 }

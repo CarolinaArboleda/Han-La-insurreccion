@@ -10,7 +10,7 @@ public class proyectil_fenix : MonoBehaviour
     void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
-        destroyTime = 1.0f;
+        destroyTime = 1.5f;
     }
 
     public void Launch(Vector2 direction, float force)
@@ -27,7 +27,9 @@ public class proyectil_fenix : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
     }
+
 
     void OnTriggerEnter2D(Collider2D other)
     {
