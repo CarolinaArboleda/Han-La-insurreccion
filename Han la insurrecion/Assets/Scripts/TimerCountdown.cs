@@ -9,7 +9,9 @@ public class TimerCountdown : MonoBehaviour
     public GameObject textDisplay;
     public GameObject barrera;
     public GameObject textTrigger;
-    public GameObject pickupDragon;
+    public GameObject liuBang;
+    public GameObject dragon;
+    public GameObject pickUpDragon;
 
     public int secondsLeft = 45;
     public bool takingAway = false;
@@ -45,7 +47,9 @@ public class TimerCountdown : MonoBehaviour
         if (takingAway == false && secondsLeft <= 0)
         {
             textTrigger.GetComponent<finalizacion_dialogo_dragon_trigger>().TriggerDialogue();
-            pickupDragon.SetActive(true);
+            pickUpDragon.SetActive(true);
+            liuBang.GetComponent<LiuBangCH>().dragon_superado = true;
+            dragon.SetActive(true);
         }
     }
 

@@ -22,6 +22,8 @@ public class fenix : MonoBehaviour
 
     public GameObject projectilePrefab;
     public GameObject pickupFenix;
+    public GameObject liuBang;
+
     Transform target;
     Transform myTransform;
 
@@ -105,6 +107,7 @@ public class fenix : MonoBehaviour
 
         if (death && endDialogue && !dialogueOnce)
         {
+            liuBang.GetComponent<LiuBangCH>().fenix_superado = true;
             pickupFenix.SetActive(true);
             textTrigger.GetComponent<dialogo_fenix_trigger>().TriggerDialogue();
             endDialogue = false;

@@ -29,9 +29,17 @@ public class LiuBangCH : MonoBehaviour
     private Animator anim;
     public GameObject IcePrefab;
 
+    public GameObject targetDragon;
+    public GameObject targetFenix;
+    public GameObject myself;
+
     public bool conseguidoCongelar = false;
     public bool conseguidoFuego = false;
     public bool conseguidoDash = false;
+
+    public bool dragon_superado;
+    public bool fenix_superado;
+    public GameObject pickupDragon;
 
     bool isDashing = false;
     float dashTimer;
@@ -48,6 +56,9 @@ public class LiuBangCH : MonoBehaviour
     float cooldownIceTimer;
     public float timecooldownIce = 2.0f;
 
+    bool once;
+    bool once_fenix = true;
+
     bool cooldownDash;
     float cooldownDashTimer;
     public float timecooldownDash = 2.5f;
@@ -55,6 +66,7 @@ public class LiuBangCH : MonoBehaviour
     bool cooldownFire;
     float cooldownFireTimer;
     public float timecooldownFire = 2.0f;
+
 
     //bool enableShooting;
     //int shoots;
@@ -125,11 +137,11 @@ public class LiuBangCH : MonoBehaviour
                 dashTimer -= Time.deltaTime;
             }
         }
-        
+
         if (cooldownIce)
         {
             cooldownIceTimer -= Time.deltaTime;
-            
+
             if (cooldownIceTimer < 0)
                 cooldownIce = false;
         }
@@ -196,6 +208,20 @@ public class LiuBangCH : MonoBehaviour
                 Launch();
                 //shoots--;
             }
+        }
+
+        if (dragon_superado && once)
+        {
+            myself.transform.position = targetDragon.transform.position;
+            once = false;
+
+        }
+
+        if (fenix_superado && once_fenix)
+        {
+            Debug.Log("hola");
+            myself.transform.position = targetFenix.transform.position;
+            once_fenix = false;
         }
 
         //if (Input.GetKeyDown(KeyCode.V))
