@@ -245,13 +245,30 @@ public class LiuBangCH : MonoBehaviour
 
             foreach (Collider2D enemy in hitEnemies)
             {
-                enemy.GetComponent<EnemigoComun>().takeDamage(attackDamage+attackBonus);
-            }
+                if (enemy.GetComponent<EnemigoComun>())
+                {
+                enemy.GetComponent<EnemigoComun>().takeDamage(attackDamage + attackBonus);
+                }
+
+                if (enemy.GetComponent<fenix>())
+                {
+                    enemy.GetComponent<fenix>().takeDamage(attackDamage + attackBonus);
+                }
+            }       
 
             foreach (Collider2D enemy in hitEnemies2)
             {
-                enemy.GetComponent<EnemigoComun>().takeDamage(attackDamage+attackBonus);
+                if (enemy.GetComponent<EnemigoComun>())
+                {
+                    enemy.GetComponent<EnemigoComun>().takeDamage(attackDamage + attackBonus);
+                }
+
+                if (enemy.GetComponent<fenix>())
+                {
+                    enemy.GetComponent<fenix>().takeDamage(attackDamage + attackBonus);
+                }
             }
+
         }
 
 

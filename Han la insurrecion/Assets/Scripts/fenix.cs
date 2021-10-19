@@ -82,7 +82,7 @@ public class fenix : MonoBehaviour
                 cooldownProjectile = false;
         }
 
-        if (endDialogue)
+        if (endDialogue)// no sé cómo entra acá porque endDialogue nunca es verdadero, pero entra somehow
         {
             barrera.SetActive(true);
             if (tiempo >= 0.05f)
@@ -105,8 +105,9 @@ public class fenix : MonoBehaviour
 
         }
 
-        if (death && endDialogue && !dialogueOnce)
+        if (death && endDialogue && !dialogueOnce) //endDialogue no se hace verdadero en este código
         {
+            Debug.Log("Se acabó el combate");
             liuBang.GetComponent<LiuBangCH>().fenix_superado = true;
             pickupFenix.SetActive(true);
             textTrigger.GetComponent<dialogo_fenix_trigger>().TriggerDialogue();
@@ -141,6 +142,7 @@ public class fenix : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            death = true;
             Die();
         }
     }
@@ -148,7 +150,7 @@ public class fenix : MonoBehaviour
     void Die()
     {
         Debug.Log("Enemy died!");
-        death = true;
+        //death = true;
 
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;

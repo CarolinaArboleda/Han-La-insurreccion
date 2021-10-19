@@ -146,7 +146,7 @@ public class EnemigoComun : MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
         Debug.Log("Enemy died!");
 
