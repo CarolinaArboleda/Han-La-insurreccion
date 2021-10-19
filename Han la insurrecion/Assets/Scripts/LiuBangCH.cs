@@ -56,7 +56,7 @@ public class LiuBangCH : MonoBehaviour
     float cooldownIceTimer;
     public float timecooldownIce = 2.0f;
 
-    bool once;
+    bool once = true;
     bool once_fenix = true;
 
     bool cooldownDash;
@@ -219,7 +219,6 @@ public class LiuBangCH : MonoBehaviour
 
         if (fenix_superado && once_fenix)
         {
-            Debug.Log("hola");
             myself.transform.position = targetFenix.transform.position;
             once_fenix = false;
         }

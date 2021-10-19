@@ -12,7 +12,7 @@ public class fenix : MonoBehaviour
     public Transform centro;
     private float xo, yo, x, y, r, angulo, tiempo;
     public bool endDialogue = false;
-    public bool dialogueOnce = false;
+    public bool dialogueOnce = true;
     public GameObject barrera;
     public GameObject textTrigger;
 
@@ -31,6 +31,7 @@ public class fenix : MonoBehaviour
     public int currentHealth;
 
     public bool death = false;
+    public bool inicio_desafío = false;
 
     Rigidbody2D rigidbody2d;
 
@@ -94,6 +95,7 @@ public class fenix : MonoBehaviour
                     angulo = (angulo - Mathf.PI / 32) % (2 * Mathf.PI);
                     transform.localPosition = new Vector2(x, y);
                     tiempo = 0f;
+                    inicio_desafío = true;
                     launch();
 
                 }
@@ -105,15 +107,6 @@ public class fenix : MonoBehaviour
 
         }
 
-        if (death && endDialogue && !dialogueOnce) //endDialogue no se hace verdadero en este código
-        {
-            Debug.Log("Se acabó el combate");
-            liuBang.GetComponent<LiuBangCH>().fenix_superado = true;
-            pickupFenix.SetActive(true);
-            textTrigger.GetComponent<dialogo_fenix_trigger>().TriggerDialogue();
-            endDialogue = false;
-            dialogueOnce = true;
-        }
     }
 
 
@@ -137,24 +130,29 @@ public class fenix : MonoBehaviour
 
     public void takeDamage(int damage)
     {
-        currentHealth -= damage;
-        Debug.Log(currentHealth + "/" + maxHealth);
-
-        if (currentHealth <= 0)
+        if (inicio_desafío)
         {
-            death = true;
-            Die();
+            currentHealth -= damage;
+            Debug.Log(currentHealth + "/" + maxHealth);
+
+            if (currentHealth <= 0)
+            {
+                death = true;
+                Die();
+            }
         }
     }
 
     void Die()
     {
         Debug.Log("Enemy died!");
-        //death = true;
-
+        liuBang.GetComponent<LiuBangCH>().fenix_superado = true;
+        pickupFenix.SetActive(true);
+        textTrigger.GetComponent<dialogo_fenix_trigger>().TriggerDialogue();
+        barrera.SetActive(false);
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
-        Destroy(gameObject);
+        gameObject.SetActive(false);
 
     }
 

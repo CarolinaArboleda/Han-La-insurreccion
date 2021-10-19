@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7613104382082789773}
   - component: {fileID: 6253795515608145559}
   - component: {fileID: 9062978375591158588}
+  - component: {fileID: 6357671494294474660}
   m_Layer: 0
   m_Name: Hojas
   m_TagString: Untagged
@@ -122,3 +123,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d6be4c69c36670448a1506ca7aca35d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &6357671494294474660
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4100272695548652307}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9cfe09fbfee10ad4bb7119b734172875, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
