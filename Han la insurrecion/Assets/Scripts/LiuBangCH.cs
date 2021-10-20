@@ -63,6 +63,7 @@ public class LiuBangCH : MonoBehaviour
 
     bool once = true;
     bool once_fenix = true;
+    bool once_pickups = true;
 
     bool cooldownDash;
     float cooldownDashTimer;
@@ -222,6 +223,12 @@ public class LiuBangCH : MonoBehaviour
 
         }
 
+        if (conseguidoVida && conseguidoFuego && conseguidoDash && conseguidoCongelar && once_pickups)
+        {
+            openDoor();
+
+        }
+
         if (fenix_superado && once_fenix)
         {
             myself.transform.position = targetFenix.transform.position;
@@ -232,11 +239,6 @@ public class LiuBangCH : MonoBehaviour
         // {
         //   LaunchScrew();
         //}
-
-        if(conseguidoVida && conseguidoFuego && conseguidoDash && conseguidoCongelar)
-        {
-            openDoor();
-        }
 
         if (currentHealth <= 0)
         {
@@ -373,6 +375,8 @@ public class LiuBangCH : MonoBehaviour
     void openDoor()
     {
         door.SetActive(false);
+        myself.GetComponent<AllPickups_dialogue_trigger>().TriggerDialogue();
+        once_pickups = false;
     }
     
     //void LaunchScrew()

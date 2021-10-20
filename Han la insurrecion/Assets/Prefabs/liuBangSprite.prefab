@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 8748044876344262689}
   - component: {fileID: 8748044876344262688}
   - component: {fileID: 8748044876344262695}
+  - component: {fileID: -2288976580724353726}
   - component: {fileID: 8748044876344262694}
   - component: {fileID: 1424422048554648850}
   m_Layer: 8
@@ -193,23 +194,47 @@ MonoBehaviour:
   maxHealth: 5
   timeInvincible: 2
   projectilePrefab: {fileID: 7224096935402631078, guid: c158f5603ec9df2458611310a653793e, type: 3}
+  door: {fileID: 0}
   attackPoint: {fileID: 3150078254258819872}
   attackPoint2: {fileID: 6706398707583007388}
   attackRange: 1
   attackDamage: 40
+  attackBonus: 0
   attackRate: 2
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64
   IcePrefab: {fileID: 8391566926362300779, guid: 2b47e76cbd8cfbb4ba6a15da57ef5053, type: 3}
+  targetDragon: {fileID: 0}
+  targetFenix: {fileID: 0}
+  myself: {fileID: 0}
   conseguidoCongelar: 0
   conseguidoFuego: 0
   conseguidoDash: 0
+  conseguidoVida: 0
+  dragon_superado: 0
+  fenix_superado: 0
+  pickupDragon: {fileID: 0}
   timeDashing: 0.4
   currentHealth: 0
   timecooldownIce: 2
   timecooldownDash: 4
   timecooldownFire: 2
+--- !u!114 &-2288976580724353726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8748044876344262693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a115d428043e10545861e55f9c573f26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogo:
+    name: 
+    frases: []
 --- !u!50 &8748044876344262694
 Rigidbody2D:
   serializedVersion: 4
