@@ -51,7 +51,8 @@ public class Dialogue_Manager_Init : MonoBehaviour
         {
             animator.SetBool("IsOpen", false);
         }
-        
+        Destroy(FindObjectOfType<Deteccion_init_trigger>());
+
     }
 }
 
