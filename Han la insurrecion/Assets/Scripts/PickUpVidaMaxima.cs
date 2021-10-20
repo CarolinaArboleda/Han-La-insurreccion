@@ -11,6 +11,7 @@ public class PickUpVidaMaxima : MonoBehaviour
         if (controller != null)
         {
             controller.additMaxHealth = 3;
+            controller.conseguidoVida = true;
             Destroy(gameObject);
             Debug.Log("Max Health INCREASED");
             controller.currentHealth = controller.maxHealth + controller.additMaxHealth;

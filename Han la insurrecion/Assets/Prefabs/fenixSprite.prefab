@@ -215,9 +215,10 @@ MonoBehaviour:
   projectilePrefab: {fileID: 7401650092945547501, guid: a00a1631d381e37488ea1213a8543a78, type: 3}
   pickupFenix: {fileID: 0}
   liuBang: {fileID: 0}
-  maxHealth: 100
+  maxHealth: 350
   currentHealth: 0
   death: 0
+  "inicio_desaf\xEDo": 0
 --- !u!114 &1272557943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,4 +234,7 @@ MonoBehaviour:
   dialogo:
     name: "F\xE9nix del fuego del sur"
     frases:
-    - ugh...
+    - 'Ugh...
+
+
+      *Presiona (E) para lanzar proyectil*'

@@ -18,7 +18,7 @@ public class fenix : MonoBehaviour
 
     bool cooldownProjectile;
     float cooldownProjectileTimer;
-    public float timecooldownProjectile = 5f;
+    public float timecooldownProjectile = 4f;
 
     public GameObject projectilePrefab;
     public GameObject pickupFenix;
@@ -27,7 +27,7 @@ public class fenix : MonoBehaviour
     Transform target;
     Transform myTransform;
 
-    public int maxHealth = 100;
+    public int maxHealth = 200;
     public int currentHealth;
 
     public bool death = false;

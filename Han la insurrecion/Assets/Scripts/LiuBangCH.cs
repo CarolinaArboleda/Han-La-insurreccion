@@ -18,8 +18,9 @@ public class LiuBangCH : MonoBehaviour
     public float timeInvincible = 2.0f;
    
     public GameObject projectilePrefab;
-    //public GameObject screwPrefab;
+    public GameObject door;
     
+
 
     public Transform attackPoint;
     public Transform attackPoint2;
@@ -39,6 +40,7 @@ public class LiuBangCH : MonoBehaviour
     public bool conseguidoCongelar = false;
     public bool conseguidoFuego = false;
     public bool conseguidoDash = false;
+    public bool conseguidoVida = false;
 
     public bool dragon_superado;
     public bool fenix_superado;
@@ -231,7 +233,10 @@ public class LiuBangCH : MonoBehaviour
         //   LaunchScrew();
         //}
 
-        
+        if(conseguidoVida && conseguidoFuego && conseguidoDash && conseguidoCongelar)
+        {
+            openDoor();
+        }
 
         if (currentHealth <= 0)
         {
@@ -365,6 +370,10 @@ public class LiuBangCH : MonoBehaviour
         //animator.SetTrigger("Launch");
     }
 
+    void openDoor()
+    {
+        door.SetActive(false);
+    }
     
     //void LaunchScrew()
     //{
