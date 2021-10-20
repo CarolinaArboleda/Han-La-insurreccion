@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LiuBangCH : MonoBehaviour
 {
+
+    
+
     public float speed = 3.0f;
     public float speedGuard = 0f;
 
@@ -228,6 +231,8 @@ public class LiuBangCH : MonoBehaviour
         //   LaunchScrew();
         //}
 
+        
+
         if (currentHealth <= 0)
         {
             FindObjectOfType<manager>().GameOver();
@@ -360,21 +365,22 @@ public class LiuBangCH : MonoBehaviour
         //animator.SetTrigger("Launch");
     }
 
-        //void LaunchScrew()
-        //{
-        // GameObject screwObject = Instantiate(screwPrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
-
-        //ScrewProjectile screwProjectile = screwObject.GetComponent<ScrewProjectile>();
-        // screwProjectile.LaunchScrew(lookDirection, 300);
-
-        // animator.SetTrigger("Launch");
-        // }
-
-        //public void Shooting()
-        //{
-        //   enableShooting = true;
-        //shoots = 5;
-        // Debug.Log("Shoots: ");
-        // }
     
+    //void LaunchScrew()
+    //{
+    // GameObject screwObject = Instantiate(screwPrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+
+    //ScrewProjectile screwProjectile = screwObject.GetComponent<ScrewProjectile>();
+    // screwProjectile.LaunchScrew(lookDirection, 300);
+
+    // animator.SetTrigger("Launch");
+    // }
+
+    //public void Shooting()
+    //{
+    //   enableShooting = true;
+    //shoots = 5;
+    // Debug.Log("Shoots: ");
+    // }
+
 }
