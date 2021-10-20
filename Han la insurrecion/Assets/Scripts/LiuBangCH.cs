@@ -5,7 +5,7 @@ using UnityEngine;
 public class LiuBangCH : MonoBehaviour
 {
 
-    
+    public bool Moving = true;
 
     public float speed = 3.0f;
     public float speedGuard = 0f;
@@ -105,27 +105,33 @@ public class LiuBangCH : MonoBehaviour
     {
         maxHealth = initMaxHealth + additMaxHealth;
 
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-
-        Vector2 move = new Vector2(horizontal, vertical);
-
-        if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
+        if (Moving)
         {
-            lookDirection.Set(move.x, move.y);
-            lookDirection.Normalize();
-            anim.SetInteger("Estado", 0);
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
+
+            Vector2 move = new Vector2(horizontal, vertical);
+
+            if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
+            {
+                lookDirection.Set(move.x, move.y);
+                lookDirection.Normalize();
+                anim.SetInteger("Estado", 0);
+            }
+
+
+
+            //animator.SetFloat("Look X", lookDirection.x);
+            //animator.SetFloat("Look Y", lookDirection.y);
+            //animator.SetFloat("Speed", move.magnitude);
+
+            Vector2 position = rigidbody2d.position;
+
+            position = position + move * speed * Time.deltaTime;
+
+            rigidbody2d.MovePosition(position);
+
         }
-
-        //animator.SetFloat("Look X", lookDirection.x);
-        //animator.SetFloat("Look Y", lookDirection.y);
-        //animator.SetFloat("Speed", move.magnitude);
-
-        Vector2 position = rigidbody2d.position;
-
-        position = position + move * speed * Time.deltaTime;
-
-        rigidbody2d.MovePosition(position);
 
         if (isInvincible)
         {
@@ -261,17 +267,28 @@ public class LiuBangCH : MonoBehaviour
                 enemy.GetComponent<EnemigoComun>().takeDamage(attackDamage + attackBonus);
                 }
 
-                if (enemy.GetComponent<fenix>())
+                if (enemy.GetComponent<emperador>())
                 {
-                    enemy.GetComponent<fenix>().takeDamage(attackDamage + attackBonus);
+                enemy.GetComponent<emperador>().takeDamage(attackDamage + attackBonus);
                 }
-            }       
 
-            foreach (Collider2D enemy in hitEnemies2)
+
+            if (enemy.GetComponent<fenix>())
+            {
+                enemy.GetComponent<fenix>().takeDamage(attackDamage + attackBonus);
+            }
+        }
+
+        foreach (Collider2D enemy in hitEnemies2)
             {
                 if (enemy.GetComponent<EnemigoComun>())
                 {
                     enemy.GetComponent<EnemigoComun>().takeDamage(attackDamage + attackBonus);
+                }
+
+                if (enemy.GetComponent<emperador>())
+                {
+                    enemy.GetComponent<emperador>().takeDamage(attackDamage + attackBonus);
                 }
 
                 if (enemy.GetComponent<fenix>())
