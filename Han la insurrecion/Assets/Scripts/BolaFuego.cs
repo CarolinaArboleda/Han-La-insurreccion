@@ -32,11 +32,18 @@ public class BolaFuego : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         EnemigoComun enemigo = other.gameObject.GetComponent<EnemigoComun>();
+        emperador emperador = other.gameObject.GetComponent<emperador>();
 
         if (enemigo != null)
         {
             enemigo.GetComponent<EnemigoComun>().takeDamage(fireballDamage);
             Debug.Log("Fireball hit");
+        }
+
+        if (emperador != null)
+        {
+            emperador.ChangeSpeed();
+            emperador.isFrozen = true;
         }
     }
 

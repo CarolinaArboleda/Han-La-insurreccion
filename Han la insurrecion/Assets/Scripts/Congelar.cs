@@ -33,6 +33,7 @@ public class Congelar : MonoBehaviour
         EnemigoComun enemigo = other.gameObject.GetComponent<EnemigoComun>();
         fenix fenix = other.gameObject.GetComponent<fenix>();
         dragon dragon = other.gameObject.GetComponent<dragon>();
+        emperador emperador = other.gameObject.GetComponent<emperador>();
 
         if (fenix != null)
         {
@@ -50,6 +51,12 @@ public class Congelar : MonoBehaviour
         {
             enemigo.ChangeSpeed();
             enemigo.isFrozen = true;
+        }
+
+        if (emperador != null)
+        {
+            emperador.ChangeSpeed();
+            emperador.isFrozen = true;
         }
     }
 }
