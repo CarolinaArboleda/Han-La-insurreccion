@@ -81,7 +81,7 @@ public class LiuBangCH : MonoBehaviour
 
 
 
-    //Animator animator;
+    Animator animator;
     Vector2 lookDirection = new Vector2(1, 0);
 
     // Start is called before the first frame update
@@ -121,8 +121,8 @@ public class LiuBangCH : MonoBehaviour
 
 
 
-            //animator.SetFloat("Look X", lookDirection.x);
-            //animator.SetFloat("Look Y", lookDirection.y);
+            anim.SetFloat("Look X", lookDirection.x);
+            anim.SetFloat("Look Y", lookDirection.y);
             //animator.SetFloat("Speed", move.magnitude);
 
             Vector2 position = rigidbody2d.position;
@@ -195,6 +195,8 @@ public class LiuBangCH : MonoBehaviour
 
 
         //animator.SetTrigger("Launch");
+        anim.SetFloat("Look X", lookDirection.x);
+        anim.SetFloat("Look Y", lookDirection.y);
 
 
 
