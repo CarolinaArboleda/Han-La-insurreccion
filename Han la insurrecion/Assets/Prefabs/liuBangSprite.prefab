@@ -187,6 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fad68d68f2ae414bbf25d224d826629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Moving: 1
   speed: 50
   speedGuard: 50
   initMaxHealth: 5
@@ -208,8 +209,8 @@ MonoBehaviour:
   targetDragon: {fileID: 0}
   targetFenix: {fileID: 0}
   myself: {fileID: 0}
-  conseguidoCongelar: 0
-  conseguidoFuego: 0
+  conseguidoCongelar: 1
+  conseguidoFuego: 1
   conseguidoDash: 0
   conseguidoVida: 0
   dragon_superado: 0

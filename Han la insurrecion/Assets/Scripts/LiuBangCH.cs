@@ -123,7 +123,7 @@ public class LiuBangCH : MonoBehaviour
 
             anim.SetFloat("Look X", lookDirection.x);
             anim.SetFloat("Look Y", lookDirection.y);
-            //animator.SetFloat("Speed", move.magnitude);
+            anim.SetFloat("Speed", move.magnitude);
 
             Vector2 position = rigidbody2d.position;
 
@@ -339,6 +339,8 @@ public class LiuBangCH : MonoBehaviour
         congelar.LaunchIce(lookDirection, 800);
         cooldownIce = true;
         cooldownIceTimer = timecooldownIce;
+        anim.SetInteger("Estado", 2);
+        StartCoroutine("returne");
     }
 
     void ataque_melee()
@@ -388,7 +390,9 @@ public class LiuBangCH : MonoBehaviour
         cooldownFire = true;
         cooldownFireTimer = timecooldownFire;
 
-        //animator.SetTrigger("Launch");
+        anim.SetInteger("Estado", 2);
+
+        StartCoroutine("returne");
     }
 
     void openDoor()
