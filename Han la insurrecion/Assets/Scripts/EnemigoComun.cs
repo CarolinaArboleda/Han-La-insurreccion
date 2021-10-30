@@ -7,6 +7,7 @@ public class EnemigoComun : MonoBehaviour
     public float speed = 2.5f;
     public bool vertical;
     public float changeTime = 3.0f;
+    private Animator anim;
 
     Rigidbody2D rigidbody2D;
     float timer;
@@ -27,6 +28,7 @@ public class EnemigoComun : MonoBehaviour
     public int currentHealth;
 
     Animator animator;
+    Vector2 lookDirection = new Vector2(1, 0);
 
     void Awake()
     {
@@ -39,7 +41,7 @@ public class EnemigoComun : MonoBehaviour
         timer = changeTime;
         shootsFix = 2;
         target = GameObject.FindWithTag("Player").transform; //target the player
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         currentHealth = maxHealth;
         frozenTimer = timeFrozen;
     }
@@ -75,16 +77,15 @@ public class EnemigoComun : MonoBehaviour
             frozenTimer -= Time.deltaTime;
             if (frozenTimer <= 0)
             {
-                Debug.Log("unu");
                 speed = 2.5f;
                 moveSpeed = 1.5f;
                 isFrozen = false;
                 frozenTimer = timeFrozen;
+                animator.SetInteger("Estado", 0);
             }
                 
         }
-
-        
+    
     }
 
     void FixedUpdate()
@@ -94,14 +95,14 @@ public class EnemigoComun : MonoBehaviour
         if (vertical)
         {
             position.y = position.y + Time.deltaTime * speed * direction; ;
-            //animator.SetFloat("Move X", 0);
-            //animator.SetFloat("Move Y", direction);
+            //animator.SetFloat("Look X", 0);
+            //animator.SetFloat("Look Y", direction);
         }
         else
         {
             position.x = position.x + Time.deltaTime * speed * direction; ;
-            //animator.SetFloat("Move X", direction);
-            //animator.SetFloat("Move Y", 0);
+            animator.SetFloat("Look X", direction);
+            animator.SetFloat("Look Y", 0);
         }
 
         rigidbody2D.MovePosition(position);
@@ -122,6 +123,7 @@ public class EnemigoComun : MonoBehaviour
         speed = speed * 0;
         moveSpeed = moveSpeed * 0;
         Debug.Log("Speed: " + speed);
+        animator.SetInteger("Estado", 1);
     }
 
     public void Fix()
