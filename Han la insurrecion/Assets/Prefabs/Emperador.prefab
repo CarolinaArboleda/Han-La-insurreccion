@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 1624428159147566713}
   - component: {fileID: 1624428159147566712}
   - component: {fileID: 1624428159147566709}
+  - component: {fileID: 3135249712987647612}
   m_Layer: 6
   m_Name: Emperador
   m_TagString: Untagged
@@ -105,7 +106,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 8ecdd44d61d62484083811d94429e246, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5e96a27ded079814f962ba9e871868bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -133,7 +134,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.15874, y: 7.0199995}
+    oldSize: {x: 18.863409, y: 25.98}
     newSize: {x: 8.54, y: 7.33}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -180,9 +181,30 @@ MonoBehaviour:
   speed: 2.5
   centro: {fileID: 1535524045549431260}
   timecooldownProjectile: 4
-  projectilePrefab: {fileID: 7401650092945547501, guid: a00a1631d381e37488ea1213a8543a78, type: 3}
+  projectilePrefab: {fileID: 2797175334695736840, guid: b02bdbd78cb05ee4d9c259f9212fd102, type: 3}
   liuBang: {fileID: 0}
+  EndScreen: {fileID: 0}
   maxHealth: 200
   currentHealth: 0
   death: 0
   "inicio_desaf\xEDo": 0
+  end_dialogue: 0
+--- !u!95 &3135249712987647612
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624428159147566718}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a9f39c4826b11814eaba11991158e183, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -33,6 +33,8 @@ public class emperador : MonoBehaviour
     public bool death = false;
     public bool inicio_desafío = false;
 
+    public bool end_dialogue = false;
+
     Rigidbody2D rigidbody2d;
 
     void Awake()
@@ -88,7 +90,7 @@ public class emperador : MonoBehaviour
             
             if (tiempo >= 0.05f)
             {
-                if (!isFrozen && !death)
+                if (!isFrozen && !death && end_dialogue)
                 {
                     x = xo + r * Mathf.Cos(angulo);
                     y = yo + r * Mathf.Sin(angulo);
@@ -121,7 +123,7 @@ public class emperador : MonoBehaviour
 
         GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
         proyectil_fenix projectile = projectileObject.GetComponent<proyectil_fenix>();
-        projectile.Launch(direction, 400);
+        projectile.Launch(direction, 3000);
 
         cooldownProjectile = true;
         cooldownProjectileTimer = timecooldownProjectile;

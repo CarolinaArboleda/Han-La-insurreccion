@@ -62,5 +62,6 @@ public class emperador_dialogo_manager : MonoBehaviour
         animator.SetBool("isOpen", false);
         Debug.Log("Finalizó la conversación");
         Destroy(FindObjectOfType<deteccion_emperador_dialogo_trigger>());
+        emperador.GetComponent<emperador>().end_dialogue = true;
     }
 }
