@@ -209,8 +209,8 @@ MonoBehaviour:
   targetDragon: {fileID: 0}
   targetFenix: {fileID: 0}
   myself: {fileID: 0}
-  conseguidoCongelar: 1
-  conseguidoFuego: 1
+  conseguidoCongelar: 0
+  conseguidoFuego: 0
   conseguidoDash: 0
   conseguidoVida: 0
   dragon_superado: 0

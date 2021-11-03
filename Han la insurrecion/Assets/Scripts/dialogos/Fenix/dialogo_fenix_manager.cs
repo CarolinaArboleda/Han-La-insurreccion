@@ -8,6 +8,7 @@ public class dialogo_fenix_manager : MonoBehaviour
     public Text nameText;
     public Text dialogueText;
     public GameObject fenix;
+    public GameObject liubang;
 
     public Animator animator;
 
@@ -16,12 +17,12 @@ public class dialogo_fenix_manager : MonoBehaviour
     void Start()
     {
         frases = new Queue<string>();
+        liubang.GetComponent<LiuBangCH>().Moving = false;
     }
 
     public void StartDialogue(dialogo_fenix dialogo_fenix)
     {
         animator.SetBool("isOpen", true);
-
         nameText.text = dialogo_fenix.name;
 
         frases.Clear();
@@ -63,6 +64,7 @@ public class dialogo_fenix_manager : MonoBehaviour
         Debug.Log("Finalizó la conversación");
         Destroy(FindObjectOfType<deteccion_fenix_trigger>());
         fenix.GetComponent<fenix>().endDialogue = true;
+        liubang.GetComponent<LiuBangCH>().Moving = true;
     }
 
 }

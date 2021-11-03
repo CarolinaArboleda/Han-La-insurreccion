@@ -209,6 +209,7 @@ public class LiuBangCH : MonoBehaviour
             {
                 isDashing = false;
                 speed = speedGuard;
+                anim.SetBool("Dash", false);
                 Debug.Log("Speed: " + speed);
             }
         }
@@ -373,6 +374,8 @@ public class LiuBangCH : MonoBehaviour
 
         isDashing = true;
         dashTimer = timeDashing;
+
+        anim.SetBool("Dash", true);
 
         cooldownDash = true;
         cooldownDashTimer = timecooldownDash;
