@@ -11,6 +11,8 @@ public class Dialogue_Manager_Init : MonoBehaviour
     public Animator animator;
     private Queue<string> sentences;
 
+    public GameObject barrera;
+
     void Start ()
 
     {
@@ -52,6 +54,7 @@ public class Dialogue_Manager_Init : MonoBehaviour
             animator.SetBool("IsOpen", false);
         }
         Destroy(FindObjectOfType<Deteccion_init_trigger>());
+        barrera.SetActive(false); 
 
     }
 }
